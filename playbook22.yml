@@ -1,0 +1,7 @@
+---
+- name: call child playbook
+  hosts: all
+  tasks:
+    - name: callin child palybook21.yml from passwd file
+      include: playbook21.yml
+...

@@ -1,0 +1,10 @@
+---
+- name: checkurlresponse in apache2
+  uri:
+    url: "{{item}}"
+    status_code: 200
+  with_items:
+    - http://172.31.13.167
+    - http://172.31.30.228
+    - http://172.31.21.198
+...

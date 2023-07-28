@@ -1,0 +1,9 @@
+---
+a: ram
+b: sita
+c: /tmp/ram
+d: 6789
+e: /bin/bash
+f: "a normal user"
+...
+

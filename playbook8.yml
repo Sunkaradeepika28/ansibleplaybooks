@@ -1,0 +1,38 @@
+
+# .. 
+# - name: implementing loops
+#   hosts: all
+#    tasks:
+#   - name: install/uninstall software applications
+#     apt:
+#       name: "{{item.a}}"
+#       state: "{{item.b}}"
+#       update_cache: "{{item.c}}"
+#     with_items:
+#       - {a: git,b: present,c: no}
+#       - {a: tree, b: absent, c: no}
+#       - {a: maven, b: latest,c: yes}
+#
+
+
+---
+- name: create users and copy fies into users home directory
+  hosts: all
+  tasks:
+    - name: create users
+      user:
+          name: "{{item.a}}"
+          password: "{{item.b}}"
+          home: "{{item.c}}"
+      with_items:
+        - {a: ram,b: easy,c: /home/ramu}
+        - {a: sita, b: sita12,c: /tmp/sita}
+     - name: copy files into users home dir
+       copy:
+         src: "{{item.a}}"
+         dest: "{{item.b}}"
+       with_items:
+         - {a: /etc/passwd, b: /home/ramu}
+         - {a: /etc/passwd, b: /tmp/sita}
+...
+

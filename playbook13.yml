@@ -1,0 +1,26 @@
+---
+- name: error handling
+  hosts: all
+  tasks:
+    - block:
+      - name: install git using apt on ubuntu servers
+        apt:
+          name: git
+          state: present
+          update_cache: yes
+      rescue:
+      - name: install git using yum in redhat servers
+        yum:
+          name: git
+          state: present
+          update_cache: yes
+      always:
+        - name: display sucess mesage
+          debug:
+            msg: "git installed" 
+...
+
+           
+
+
+    

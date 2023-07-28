@@ -1,0 +1,13 @@
+---
+- name: create
+  hosts: all
+  tasks:
+    - name: usercreation
+      user:
+        name: deepika
+        password: deep
+        home: /tmp/deepika
+        shell: /bin/bash
+        uid: 2888
+...
+

@@ -1,0 +1,6 @@
+---
+- name: copy tomcatusers.xml in dir or files
+  copy:
+    src: "{{f}}"
+    dest: "{{g}}"
+...

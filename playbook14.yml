@@ -1,0 +1,13 @@
+---
+- name: implementing when conditions
+  hosts: all
+  vars:
+    - a: 28
+  tasks:
+    - name: copy password file
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+      when: a == 28
+...          
+

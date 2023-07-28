@@ -1,0 +1,21 @@
+---
+- name: implementing handlers
+  hosts: all
+  tasks:
+    - name: install maven
+      apt:
+        name: maven
+        state: present
+        update_cache: yes
+    - name: edit the index.html file
+      copy:
+        content: "welcome to ansible class"
+        dest: /var/www/html/index.html
+    notify: restart maven
+  handlers:
+    - name: restart maven
+      service:
+        name: maven
+        state: restarted
+...
+

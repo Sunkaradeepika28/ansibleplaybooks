@@ -1,0 +1,38 @@
+---
+- name: configure apache2 httpd on allservers
+  hosts: all
+  tasks:
+    - name: configuring apache2 in ubuntu servers
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_distribution == " ubuntu"
+    - name: configuring httpd on redhat servers
+      yum:
+        name: httpd
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "Redhat"
+    - name: edit the index.html file
+      copy:
+        content: "welcome to ansible"
+        dest: /var/www/html/index.html.1
+    - name: restart apache2 on ubuntu servers
+      service:
+        name: apache2
+        state: restarted
+      when: ansible_distribution == "ubuntu"  
+    - name: restart httpd on redhat servers
+      service:
+        name: httpd
+        state: restarted
+      when: ansible_distribution == "Redhat"
+    - name: check apache2 and httpd on servers
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.30.228
+        - http://172.31.21.198
+...

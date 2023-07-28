@@ -1,0 +1,26 @@
+---
+- name: configuring apache2 on managed nodes
+  hosts: all
+  tasks:
+    - name: Install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: edit index.html file
+      copy:
+        content: "astrory"
+        dest: /var/www/html/index.html
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check apache responses on server1
+      uri:
+        url: http://172.31.30.228
+        status_code: 200
+    - name: check apache response on server2
+      uri:
+        url: http://172.31.21.198
+        status_code: 200
+...

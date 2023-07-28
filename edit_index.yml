@@ -1,0 +1,6 @@
+---
+- name: edit the index.html file
+  copy:
+    src: "welcome to ansible edit"
+    dest: /var/www/html/index.html
+...

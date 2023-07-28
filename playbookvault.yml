@@ -1,0 +1,12 @@
+---
+- name: copy some files
+  hosts: all
+  tasks:
+    - name: copy filr from filr to group file
+      copy:
+        src: "{{item}}"
+        dest: /tmp
+      with_items:
+        - /etc/passwd
+        - /etc/group
+...          
